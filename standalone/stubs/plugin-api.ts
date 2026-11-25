@@ -26,6 +26,7 @@ type EnvironmentId = string;
 type ThreadId = string;
 type ExecutionEnvironmentDescriptor = Readonly<Record<string, unknown>>;
 type AgentAwarenessState = Readonly<Record<string, unknown>>;
+type UsageDailyTotal = Readonly<Record<string, unknown>>;
 declare namespace PtyAdapter {
   interface PtyAdapter {
     readonly _: unique symbol;
@@ -148,6 +149,15 @@ export class PluginContext extends Context.Service<
       readonly stageRestore: (directory: string) => Effect.Effect<PendingRestore, PluginError>;
       readonly pendingRestore: Effect.Effect<PendingRestore | null, PluginError>;
       readonly cancelRestore: Effect.Effect<void, PluginError>;
+    };
+    /** Requires the `usage:read` capability. */
+    readonly usage: {
+      /** Daily totals per provider and model; days with no usage are absent. */
+      readonly dailyTotals: (input: {
+        readonly sinceDay: string;
+        readonly untilDay: string;
+        readonly timeZone: string;
+      }) => Effect.Effect<ReadonlyArray<UsageDailyTotal>, PluginError>;
     };
   }
 >()("@t3tools/plugin-api/PluginContext") {}

@@ -14,6 +14,7 @@ import * as Effect from "effect/Effect";
 import * as FetchHttpClient from "effect/http/FetchHttpClient";
 import * as Layer from "effect/Layer";
 import * as Option from "effect/Option";
+import * as Schema from "effect/Schema";
 import * as Stream from "effect/Stream";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 
@@ -24,6 +25,8 @@ import { MANIFEST_FILE } from "./snapshot.ts";
 
 const CREDENTIALS = { accessKeyId: "test-key", secretAccessKey: "test-secret-do-not-leak" };
 const PASSPHRASE = "a passphrase only the test knows";
+// The host brands environment ids (@t3tools/contracts); the tests need the brand, not the package.
+const EnvironmentId = Schema.String.pipe(Schema.brand("EnvironmentId"));
 const ENVIRONMENT = "env-test";
 const FILES: Record<string, Buffer> = {
   "statev2.sqlite": Buffer.concat([
@@ -153,7 +156,7 @@ function fakeHost() {
     },
     reportStatus: (message) => Effect.sync(() => void statusLines.push(message)),
     environment: {
-      environmentId: Effect.succeed(ENVIRONMENT),
+      environmentId: Effect.succeed(EnvironmentId.make(ENVIRONMENT)),
       descriptor: Effect.die("unused"),
       localOrigin: Effect.die("unused"),
     },
@@ -163,6 +166,7 @@ function fakeHost() {
       read: () => Effect.die("unused"),
       activeThreadIds: Effect.die("unused"),
     },
+    usage: { dailyTotals: () => Effect.die("unused") },
     dataBackup: {
       snapshot: Effect.acquireRelease(Effect.promise(writeSnapshot), ({ directory }) =>
         Effect.promise(() => NodeFSP.rm(directory, { recursive: true })),
