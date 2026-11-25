@@ -182,3 +182,7 @@ list, verify, restore) against a local fake S3 server.
 | `src/backups.ts`      | backup names and retention                                  |
 | `src/schedule.ts`     | when the next backup runs                                   |
 | `web/BackupPanel.tsx` | settings panel draft, moved into `apps/web` when mounted    |
+
+## License
+
+MIT. See [LICENSE](LICENSE).

@@ -20,5 +20,6 @@
     "onlyBuiltDependencies": [
       "@effect/tsgo"
     ]
-  }
+  },
+  "license": "MIT"
 }
