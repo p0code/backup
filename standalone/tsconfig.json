@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.effect.json",
+  // Mirrors p0code's tsconfig.base.json, with the plugin API stub in place of the workspace package.
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "useDefineForClassFields": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "types": ["node"],
+    "paths": { "@t3tools/plugin-api": ["./stubs/plugin-api.ts"] }
+  },
+  "include": ["../src", "stubs"]
+}
