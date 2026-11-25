@@ -17,7 +17,10 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "types": ["node"],
-    "paths": { "@t3tools/plugin-api": ["./stubs/plugin-api.ts"] }
+    "paths": {
+      "@t3tools/plugin-api": ["./stubs/plugin-api.ts"],
+      "vite-plus/test": ["./stubs/vite-plus-test.ts"]
+    }
   },
   "include": ["../src", "stubs"]
 }

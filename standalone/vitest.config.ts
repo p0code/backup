@@ -8,6 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@t3tools/plugin-api": fileURLToPath(new URL("stubs/plugin-api.ts", import.meta.url)),
+      "vite-plus/test": fileURLToPath(new URL("stubs/vite-plus-test.ts", import.meta.url)),
     },
   },
   test: { include: ["src/**/*.test.ts"] },

@@ -4,7 +4,7 @@ import * as NodeFSP from "node:fs/promises";
 import * as NodeOS from "node:os";
 import * as NodePath from "node:path";
 import type { DataSnapshotManifest } from "@t3tools/plugin-api";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vite-plus/test";
 
 import { BackupDecryptError } from "./crypto.ts";
 import { openBackup, sealSnapshot } from "./pipeline.ts";

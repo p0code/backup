@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vite-plus/test";
 
 import { EMPTY_PAYLOAD_SHA256, signV4 } from "./sigv4.ts";
 
