@@ -10,7 +10,7 @@ export const backupPlugin = definePlugin({
     name: "Backups",
     description:
       "Backs up your chats, attachments, settings and keybindings to Google Drive or S3-compatible storage, encrypted on this machine with your passphrase.",
-    version: "0.1.0",
+    version: "0.1.1",
     unofficial: false,
     externalServices: [
       "Google Drive (oauth2.googleapis.com, www.googleapis.com), when chosen",
@@ -18,6 +18,7 @@ export const backupPlugin = definePlugin({
     ],
     capabilities: ["network:outbound", "data:backup"],
     httpRoutes: [],
+    apiVersion: 1,
   },
   actions: backupActions,
   start: Effect.gen(function* () {
@@ -37,3 +38,5 @@ export const backupPlugin = definePlugin({
     };
   }),
 });
+
+export default backupPlugin;
